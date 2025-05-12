@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      /* print-styles.css */
+      @media print {
+        .no-print {
+          display: none !important;
+        }
+
+        .print-page-break {
+          page-break-after: always;
+        }
+
+        body {
+          margin: 2cm !important;
+          font-size: 12pt !important;
+        }
+        
+      }
+
+      @page {
+        size: A4 portrait;  /* A4纵向 */
+        margin: 1.5cm;
+      }
+    </style>
+</head>
+<body>
+    <div id="content" class="page">
+        <!-- 需要打印的内容 -->
+         需要打印的内容
+    </div>
+      
+    <button onclick="print()">打印</button>
+    <button onclick="preview()">预览</button>
+    <script src="../dist/miu-web2pdf.js"></script>
+    <script>
+        const plugin = new Html2PDF();
+        
+        function print() {
+          plugin.print({
+            elementId: 'content',
+            filename: 'my-document.pdf'
+          });
+        }
+
+        function preview() {
+          plugin.browserPrint({
+            elementId: 'content',
+            filename: 'my-document.pdf'
+          });
+        }
+    </script>
+</body>
+</html>
